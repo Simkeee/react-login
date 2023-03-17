@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (event) => {
+    event.preventDefault(); // prevent form submission
+    alert(`Username: ${username}\nPassword: ${password}`);
+  };
+
+  const handleReset = () => {
+    setUsername('');
+    setPassword('');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id='wrap'>
+      <div id='loginForm'>
+      <p><b>Login</b></p>
+    <form>
+      <label>
+        Username:
+        <input type="text" value={username} placeholder='username' onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input type="password" value={password} placeholder='password' onChange={(e) => setPassword(e.target.value)} />
+      </label>
+      <br />
+      <button type="submit" id='login' onClick={handleLogin}>Login</button>
+      <u><button type="button" id='reset' onClick={handleReset}>Reset</button></u>
+    </form>
+    </div>
     </div>
   );
 }
